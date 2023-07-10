@@ -2,6 +2,7 @@ certs
 pgdata
 localstack
 .env
+.DS_Store
 
 *.png
 

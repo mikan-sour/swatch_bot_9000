@@ -1,0 +1,41 @@
+Table sb9.assets {
+  id int [pk,increment]
+  type sb9.asset_type [not null]
+  file_path text [not null]
+  asset_name text [not null]
+  created_by int [default: 1]
+  created_at timestamp [default: `now()`]
+  updated_by int [default: 1]
+  updated_at timestamp [default: `now()`]
+}
+
+enum sb9.asset_type {
+    SILHOUETTE
+    SWATCH
+}
+
+Table sb9.tags {
+  id int [pk,increment]
+  tag_name text [not null]
+  created_by int [default: 1]
+  created_at timestamp [default: `now()`]
+  updated_by int [default: 1]
+  updated_at timestamp [default: `now()`]
+}
+
+Table sb9.assets_tags {
+  asset_id int [not null]
+  tag_id int [not null]
+  created_by int [default: 1]
+  created_at timestamp [default: `now()`]
+  updated_by int [default: 1]
+  updated_at timestamp [default: `now()`]
+
+  indexes {
+    (tag_id, asset_id) [pk] // composite primary key
+  }
+}
+
+Ref: sb9.assets_tags.tag_id > sb9.tags.id [delete: cascade, update: no action]
+Ref: sb9.assets_tags.asset_id > sb9.assets.id [delete: cascade, update: no action]
+

@@ -1,0 +1,3 @@
+{
+    "database":"postgres://sb9_user:sb9_user@localhost:5432/sb9000?sslmode=disable"
+}

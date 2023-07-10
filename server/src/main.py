@@ -1,4 +1,4 @@
-
+from src.clients.db import DBClient
 from src.utils.transparify import make_white_pixels_transparent, make_below_threshold_black
 from src.utils.overlay import overlay_silhouette_on_floral_print
 from src.utils.cleanup import make_outside_white
@@ -16,6 +16,7 @@ def make_an_image():
     overlay_images("../out_overlay.png", "../OUT/out.png", "../out_overlay.png")
 
 def main():
+    db = DBClient().connect()
     api.run()
 
 if __name__ == '__main__':

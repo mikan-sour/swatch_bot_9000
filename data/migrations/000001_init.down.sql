@@ -1,0 +1,4 @@
+DROP TABLE IF EXISTS sb9.assets_tags;
+DROP TABLE IF EXISTS sb9.tags;
+DROP TABLE IF EXISTS sb9.assets;
+DROP TYPE IF EXISTS sb9.asset_type;

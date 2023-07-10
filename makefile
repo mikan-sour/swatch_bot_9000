@@ -1,5 +1,9 @@
 .PHONY: all
 
+MIGRATION_PATH=./data/migrations
+MIGRATION_CONF_PATH=./data/migrations/config.json
+DB=postgres://localhost:5432/sb9000?sslmode=require
+
 env:
 	cp ./.env.sample .env
 
@@ -21,5 +25,13 @@ up:
 	docker-compose up -d
 
 all: env setup_bucket setup_server venv dev_certs up
+
+migration_new:
+	migrate create -dir ./data/migrations -seq -ext sql $(ARG)
+migration_up:
+	migrate -path $(MIGRATION_PATH) -database "postgres://sb9_user:sb9_user@localhost:5432/sb9000?sslmode=disable" up
+migration_down:
+	migrate -path $(MIGRATION_PATH) -database "postgres://sb9_user:sb9_user@localhost:5432/sb9000?sslmode=disable" down
+
 
  
