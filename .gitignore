@@ -1,0 +1,11 @@
+certs
+pgdata
+localstack
+.env
+
+*.png
+
+client/node_modules
+
+server/.idea
+server/venv/lib/python3.7/site-packages
