@@ -1,5 +1,7 @@
 import os
 import psycopg2
+from psycopg2.extras import DictCursor
+
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -32,9 +34,17 @@ class DBClient:
 
     def execute(self, query, params=None):
         try:
-            cursor = self.conn.cursor()
+            if self.conn is None:
+                self.connect()
+            cursor = self.conn.cursor(cursor_factory=DictCursor)
             cursor.execute(query, params)
             self.conn.commit()
             return cursor
         except (Exception, psycopg2.Error) as error:
             print("Error executing query:", error)
+
+    def fetchone(self):
+        return self.cursor.fetchone()
+
+    def fetchall(self):
+        return self.cursor.fetchall()

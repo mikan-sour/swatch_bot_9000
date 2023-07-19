@@ -1,22 +1,20 @@
 {
-  "name": "swatchagonnado",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "client",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "build": "node esbuild.config.js",
-    "app": "node dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "jimp": "^0.22.8",
-    "sharp": "^0.32.1"
+    "preact": "^10.15.1"
   },
   "devDependencies": {
-    "@types/node": "^20.4.1",
-    "esbuild": "^0.18.11",
-    "typescript": "^5.1.6"
+    "@preact/preset-vite": "^2.5.0",
+    "@types/node": "^20.4.2",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.0"
   }
 }

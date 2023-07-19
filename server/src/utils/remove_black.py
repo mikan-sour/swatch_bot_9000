@@ -1,8 +1,8 @@
 from PIL import Image
 
-def remove_black_pixels(image_path):
+def remove_black_pixels(image):
     # Open the image using Pillow
-    image = Image.open(image_path)
+    # image = Image.open(image)
 
     # Get the pixel data from the image
     pixels = image.load()
@@ -25,27 +25,22 @@ def remove_black_pixels(image_path):
                 else:
                     pixels[x, y] = (0, 0, 0)
 
-    image.save(image_path)
+    return image
 
-def overlay_images(background_path, overlay_path, output_path):
-    # Open the background image
-    background = Image.open(background_path)
+def overlay_images(background_image, overlay_image):
 
-    # Open the overlay image
-    overlay = Image.open(overlay_path)
 
     # Resize the overlay image to match the background size
-    overlay = overlay.resize(background.size)
+    overlay = overlay_image.resize(background_image.size)
 
     # Create a new image with transparency
-    result = Image.new('RGBA', background.size)
+    result = Image.new('RGBA', background_image.size)
 
     # Paste the background image onto the result image
-    result.paste(background, (0, 0))
+    result.paste(background_image, (0, 0))
 
     # Paste the overlay image onto the result image with alpha blending
     result.paste(overlay, (0, 0), mask=overlay)
 
     # Save the resulting image
-    result.save(output_path)
-    print(f"Overlay image saved to: {output_path}")
+    return result

@@ -1,8 +1,9 @@
 from PIL import Image
 
-def make_outside_white(image_path, output_path):
+def make_outside_white(image):
     # Open the image
-    image = Image.open(image_path).convert("RGBA")
+    # image = Image.open(image).convert("RGBA")
+    image.convert("RGBA")
 
     # Get the image data
     pixels = image.load()
@@ -80,4 +81,4 @@ def make_outside_white(image_path, output_path):
         # break  # Break if pixel is black and move to the next column
 
     # Save the modified image
-    image.save(output_path)
+    return image

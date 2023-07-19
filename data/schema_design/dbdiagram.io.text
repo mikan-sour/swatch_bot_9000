@@ -1,8 +1,8 @@
 Table sb9.assets {
   id int [pk,increment]
-  type sb9.asset_type [not null]
+  upload_type sb9.asset_type [not null]
   file_path text [not null]
-  asset_name text [not null]
+  name text [not null]
   created_by int [default: 1]
   created_at timestamp [default: `now()`]
   updated_by int [default: 1]

@@ -1,8 +1,8 @@
 from PIL import Image
 
-def make_below_threshold_black(image_path, output_path, threshold=128):
+def make_below_threshold_black(image, threshold=128):
     # Open the image
-    image = Image.open(image_path).convert("RGBA")
+    image.convert("RGBA")
 
     # Get the image data
     data = image.getdata()
@@ -19,12 +19,12 @@ def make_below_threshold_black(image_path, output_path, threshold=128):
     # Update the image data
     image.putdata(new_data)
 
-    # Save the output image
-    image.save(output_path)
+    return image
 
-def make_white_pixels_transparent(image_path, output_path, threshold=200):
+def make_white_pixels_transparent(file, threshold=200):
     # Open the image
-    image = Image.open(image_path).convert("RGBA")
+    image = Image.open(file)
+    image.convert("RGBA")
 
     # Get the image data
     data = image.getdata()
@@ -41,17 +41,17 @@ def make_white_pixels_transparent(image_path, output_path, threshold=200):
     # Update the image data
     image.putdata(new_data)
 
-    # Save the output image
-    image.save(output_path)
-    return output_path
+    return image
 
 
-def overlay_images(background_path, overlay_path, output_path):
+
+def overlay_images(background_file, overlay_file):
     # Open the background image
-    background = Image.open(background_path)
+
+    background = Image.open(background_file)
 
     # Open the overlay image
-    overlay = Image.open(overlay_path)
+    overlay = Image.open(overlay_file)
 
     # Resize the overlay image to match the background size
     overlay = overlay.resize(background.size)
@@ -66,5 +66,4 @@ def overlay_images(background_path, overlay_path, output_path):
     result.paste(overlay, (0, 0), mask=overlay)
 
     # Save the resulting image
-    result.save(output_path)
-    print(f"Overlay image saved to: {output_path}")
+    return result
